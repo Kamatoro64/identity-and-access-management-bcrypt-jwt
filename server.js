@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const jwt = require('jsonwebtoken')
 
@@ -20,11 +22,12 @@ const posts = [
 	}
 ]
 
-app.post('/posts', (req, res) => {
+app.get('/posts', (req, res) => {
+	console.log('/posts endpoint hit')
 	res.json(posts)
 })
 
-app.get('/login', (req, res) => {
+app.post('/login', (req, res) => {
 	// Authenticate User (Separate tutorial)
 
 	// Here we assume that the user has already been authenticated with username and password
@@ -33,9 +36,11 @@ app.get('/login', (req, res) => {
 
 	const user = { name: username }
 
-	jwt.sign()
+	const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 
+	res.json({ accessToken: accessToken })
 
 
 })
+
 app.listen(3000)
