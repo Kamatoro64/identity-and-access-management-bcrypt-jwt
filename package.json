@@ -4,8 +4,7 @@
   "description": "JWT authentication exploration",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devStart": "nodemon server.js"
   },
   "author": "kamatoro64",
   "license": "ISC",
