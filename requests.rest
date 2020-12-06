@@ -1,8 +1,6 @@
- ###
-
 # Create user. Note: Requires TLS to prevent password from being sniffed on the network 
-POST http://localhost:3000/localhost:3000/users
-Content-Type: application/application/json
+POST http://localhost:3000/users
+Content-Type: application/json
 
 {
 	"name": "Hannah",
@@ -10,7 +8,7 @@ Content-Type: application/application/json
 }
 
 
-
+###
  
  GET http://localhost:3000/posts 
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSGFubmFoIiwiaWF0IjoxNjA3MTc0NDk4fQ.sfbCZmQKan9SxuTP7evp2GKfrxyHU8DpMa6lEhSapk4

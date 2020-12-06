@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 
 const app = express()
 app.use(express.json()) //Middleware that enables Express to use JSON passed in the body of requests
@@ -38,8 +39,21 @@ app.get('/users', (req, res) => {
 	res.json(users)
 })
 
-app.post('/users', (req, res) => {
+app.post('/users', async (req, res) => { // Bcrypt is an asynchronous library so asynchronous (callback) function is required
 	// The goal here is to save the user in the users array (or database), without a plaintext password!
+	try {
+		const salt = await bcrypt.genSalt()
+		const hashedPassword = await bcrypt.hash(req.body.password, salt)
+		console.log(salt)
+		console.log(hashedPassword)
+		const user = { name: req.body.name, password: hashedPassword }
+		users.push(user)
+		console.log(users)
+		res.status(201).send()
+	} catch {
+		res.status(500)
+	}
+
 
 })
 
