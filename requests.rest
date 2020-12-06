@@ -3,25 +3,25 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-	"name": "Hannah",
+	"username": "Hannah",
 	"password": "Hannah's Password!" 
 }
 
-
-###
- 
- GET http://localhost:3000/posts 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSGFubmFoIiwiaWF0IjoxNjA3MTc0NDk4fQ.sfbCZmQKan9SxuTP7evp2GKfrxyHU8DpMa6lEhSapk4
-
-###
- GET http://localhost:3000/users
-
 ###
 
+# Log in as Hannah with password, expect a JWT token in return
 POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-	"username": "Hannah"
+	"username": "Hannah",
+	"password": "Hannah's Password!"
 }
+
+###
+
+# GET request on posts endpoint using Hannah's token, should only return Hannah's posts
+ GET http://localhost:3000/posts 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ikhhbm5haCIsInBhc3N3b3JkIjoiJDJiJDEwJEM3VWI1anZXcVZ4YkVDVXZmOGdldGVsTmxrSjBSdTZvckNSZTJKeXJEci9PSjFoM25Md0NTIiwiaWF0IjoxNjA3MjI2MjQxfQ.WQh1D2D5Y3ww6ctt9xGrR4cHgE-_XS8eQAzYoIMLL0Y
+
 
