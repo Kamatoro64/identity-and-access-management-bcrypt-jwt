@@ -7,6 +7,8 @@ const app = express()
 app.use(express.json()) //Middleware that enables Express to use JSON passed in the body of requests
 
 
+// Things that should be externalised, in a database or otherwise
+
 const posts = [
 	{
 		username: 'Hannah',
@@ -22,11 +24,26 @@ const posts = [
 	}
 ]
 
-app.get('/posts', authenticateToken, (req, res) => {
+const users = []
 
+// Routes
+
+// Get posts (authorisation based on username to return specific posts)
+app.get('/posts', authenticateToken, (req, res) => {
 	res.json(posts.filter(post => post.username === req.user.name))
 })
 
+// Get users 
+app.get('/users', (req, res) => {
+	res.json(users)
+})
+
+app.post('/users', (req, res) => {
+	// The goal here is to save the user in the users array (or database), without a plaintext password!
+
+})
+
+// Login 
 app.post('/login', (req, res) => {
 	// Authenticate User (Separate tutorial)
 
@@ -40,6 +57,9 @@ app.post('/login', (req, res) => {
 
 	res.json({ accessToken: accessToken })
 })
+
+
+
 
 // Create middleware function 
 function authenticateToken(req, res, next) {
@@ -56,7 +76,6 @@ function authenticateToken(req, res, next) {
 		req.user = user
 		next()
 	})
-
 
 }
 
