@@ -42,9 +42,10 @@ app.get('/users', (req, res) => {
 app.post('/users', async (req, res) => { // Bcrypt is an asynchronous library so asynchronous (callback) function is required
 	// The goal here is to save the user in the users array (or database), without a plaintext password!
 	try {
-		const salt = await bcrypt.genSalt()
-		const hashedPassword = await bcrypt.hash(req.body.password, salt)
-		console.log(salt)
+		// const salt = await bcrypt.genSalt()
+		// const hashedPassword = await bcrypt.hash(req.body.password, salt)
+		const hashedPassword = await bcrypt.hash(req.body.password, 10) //Generate salt and hash password in 1 step
+		// console.log(salt)
 		console.log(hashedPassword)
 		const user = { name: req.body.name, password: hashedPassword }
 		users.push(user)
